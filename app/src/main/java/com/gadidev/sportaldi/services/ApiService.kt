@@ -1,15 +1,17 @@
 package com.gadidev.sportaldi.services
 
 import com.gadidev.sportaldi.model.League
+import com.gadidev.sportaldi.model.LeagueDetail
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
-    interface ApiService {
+interface ApiService {
         @GET("all_leagues.php")
             fun getAllLeagues() : Call<League>
-//        fun getForecast(
-//            @Query("q") cityName : String,
-//            @Query("appid") apiKey : String,
-//            @Query("units") units : String,
-//        ) : Call<Weather>
+
+        @GET("lookupleague.php")
+        fun getDetailLeague(
+                @Query("id") idLeague : String,
+        ) : Call<LeagueDetail>
     }
