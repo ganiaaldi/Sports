@@ -1,5 +1,6 @@
 package com.gadidev.sportaldi.services
 
+import com.gadidev.sportaldi.model.Events
 import com.gadidev.sportaldi.model.League
 import com.gadidev.sportaldi.model.LeagueDetail
 import retrofit2.Call
@@ -14,4 +15,16 @@ interface ApiService {
         fun getDetailLeague(
                 @Query("id") idLeague : String,
         ) : Call<LeagueDetail>
+
+
+        @GET("eventspastleague.php")
+        fun getEventPast(
+                @Query("id") idLeague: String
+        ) : Call <Events>
+
+        @GET("eventsseason.php")
+        fun getNextEvents(
+                @Query("id") idLeague: String,
+                @Query("s") seasons: String
+        ) : Call <Events>
     }

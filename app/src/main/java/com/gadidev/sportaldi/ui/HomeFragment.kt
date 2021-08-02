@@ -1,13 +1,16 @@
 package com.gadidev.sportaldi.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gadidev.sportaldi.R
 import com.gadidev.sportaldi.adapter.LeagueAdapter
 import com.gadidev.sportaldi.databinding.FragmentHomeBinding
 import com.gadidev.sportaldi.model.ListLeague
@@ -45,11 +48,22 @@ class HomeFragment : Fragment() {
             binding.rvLeague.adapter = adapter
             adapter.setOnItemClickCallback(object : LeagueAdapter.OnItemClickCallback {
                 override fun onItemClicked(league: ListLeague) {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(
-                            league.idLeague
-                        )
-                    )
+                    val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+                    mainViewModel.getDetail(league.idLeague)
+                    mainViewModel.getPrevEvents(league.idLeague)
+//                    findNavController().navigate(
+//                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+//                            league.idLeague
+//                        )
+
+//                    Log.d("datanih","${data}")
+                    findNavController().navigate(R.id.detailFragment)
+//                    )
+//                    findNavController().navigate(
+//                            HomeFragmentDirections.actionHomeFragmentToPrevEventFragment(
+//                                    league.idLeague
+//                            )
+//                    )
                 }
             })
         })

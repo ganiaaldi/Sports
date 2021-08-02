@@ -1,11 +1,13 @@
 package com.gadidev.sportaldi.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.gadidev.sportaldi.adapter.ViewPagerAdapter
@@ -40,9 +42,12 @@ class DetailFragment : Fragment() {
     }
 
     private fun setData() {
-        val leagueId = DetailFragmentArgs.fromBundle(requireArguments()).leagueId
-        mainViewModel.getDetail(leagueId!!)
-        mainViewModel.leagueDetail.observe(viewLifecycleOwner, { league ->
+//        val leagueId = DetailFragmentArgs.fromBundle(requireArguments()).leagueId
+        val model = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+//        model.leagueIdShare.observe(viewLifecycleOwner, { data ->
+//            model.getDetail(data!!)
+//            Log.d("cekdata", "${data}")
+        model.leagueDetail.observe(viewLifecycleOwner, { league ->
             binding.tvTitle.text = league.leagues[0].strLeague
             binding.tvCurrentSeason.text = league.leagues[0].strCurrentSeason
             binding.tvWebsite.text = league.leagues[0].strWebsite
@@ -51,6 +56,7 @@ class DetailFragment : Fragment() {
                 .apply(RequestOptions())
                 .into(binding.imgLeagueDetail)
         })
+//    })
     }
 
     fun createPager(){

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:background="@color/colorGrayWhite">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22-07-2021"
+            style="@style/DarkTextSmall"
+            android:id="@+id/tvDateMatch"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15:00"
+            android:layout_marginStart="15dp"
+            style="@style/DarkTextSmall"
+            android:layout_toEndOf="@id/tvDateMatch"
+            android:id="@+id/tvTimeMatch"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Venue"
+            style="@style/DarkTextSmall"
+            android:id="@+id/tvVenue"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMatchLeague"
+            android:text="English Premiere"
+            style="@style/DarkText"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:layout_below="@id/tvDateMatch"/>
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutHome"
+            android:layout_below="@id/tvMatchLeague"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                style="@style/DarkText"
+                android:textAlignment="center"
+                android:id="@+id/scoreHome"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                style="@style/DarkTextSmall"
+                android:textAlignment="center"
+                android:layout_below="@id/scoreHome"
+                android:id="@+id/nameHome"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            style="@style/DarkTextSmall"
+            android:textSize="40sp"
+            android:layout_toRightOf="@id/layoutHome"
+            android:layout_below="@id/tvMatchLeague"/>
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutAway"
+            android:layout_below="@id/tvMatchLeague"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                style="@style/DarkText"
+                android:textAlignment="center"
+                android:id="@+id/scoreAway"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                style="@style/DarkTextSmall"
+                android:textAlignment="center"
+                android:layout_below="@id/scoreAway"
+                android:id="@+id/nameAway"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

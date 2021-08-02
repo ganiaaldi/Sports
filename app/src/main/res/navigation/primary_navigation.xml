@@ -13,12 +13,28 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_prevEventFragment"
+            app:destination="@id/prevEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.gadidev.sportaldi.ui.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="leagueId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailFragment_to_prevEventFragment"
+            app:destination="@id/prevEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prevEventFragment"
+        android:name="com.gadidev.sportaldi.ui.PrevEventFragment"
+        android:label="fragment_prev_event"
+        tools:layout="@layout/fragment_prev_event" >
         <argument
             android:name="leagueId"
             app:argType="string"
