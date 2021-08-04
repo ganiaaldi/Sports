@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.gadidev.sportaldi.model.Events
 import com.gadidev.sportaldi.model.League
 import com.gadidev.sportaldi.model.LeagueDetail
+import com.gadidev.sportaldi.model.Teams
 import com.gadidev.sportaldi.services.ApiConfig
 import kotlinx.coroutines.*
 import retrofit2.Callback
@@ -30,9 +31,13 @@ class MainViewModel : ViewModel() {
     private val _nextEvent = MutableLiveData<Events>()
     val nextEvent: LiveData<Events> = _nextEvent
 
-    val leagueIdShare = MutableLiveData<String>()
+    private val _detailEvent = MutableLiveData<Events>()
+    val detailEvent: LiveData<Events> = _detailEvent
 
-
+    private val _homeTeams = MutableLiveData<Teams>()
+    private val _awayTeams = MutableLiveData<Teams>()
+    val homeTeams: LiveData<Teams> = _homeTeams
+    val awayTeams: LiveData<Teams> = _awayTeams
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -60,7 +65,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun getDetail(idLeague : String) {
-        leagueIdShare.value = idLeague
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailLeague(idLeague)
         client.enqueue(object : Callback<LeagueDetail> {
@@ -117,6 +121,69 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<Events>, t: Throwable) {
+//                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDetailEvents(idEvent : String) {
+//        _isLoading.value = true
+        val client = ApiConfig.getApiService().getDetailEvents(idEvent)
+        client.enqueue(object : Callback<Events> {
+            override fun onResponse(call: Call<Events>, response: Response<Events>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _detailEvent.postValue(response.body())
+                    Log.e(TAG, "onSucesss: ${call.request().url}")
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Events>, t: Throwable) {
+//                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getAwayTeams(idTeams : String) {
+//        _isLoading.value = true
+        val client = ApiConfig.getApiService().getTeams(idTeams)
+        client.enqueue(object : Callback<Teams> {
+            override fun onResponse(call: Call<Teams>, response: Response<Teams>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _awayTeams.postValue(response.body())
+                    Log.e(TAG, "onSucesss: ${call.request().url}")
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Teams>, t: Throwable) {
+//                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getHomeTeams(idTeams : String) {
+//        _isLoading.value = true
+        val client = ApiConfig.getApiService().getTeams(idTeams)
+        client.enqueue(object : Callback<Teams> {
+            override fun onResponse(call: Call<Teams>, response: Response<Teams>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _homeTeams.postValue(response.body())
+                    Log.e(TAG, "onSucesss: ${call.request().url}")
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Teams>, t: Throwable) {
 //                _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }

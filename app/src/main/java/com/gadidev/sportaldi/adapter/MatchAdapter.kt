@@ -37,9 +37,17 @@ class MatchAdapter(private val listData: List<ListEvents>)
                 tvVenue.text = events.strVenue
                 tvMatchLeague.text = events.strLeague
                 nameHome.text = events.strHomeTeam
-                scoreHome.text = events.intHomeScore
+                if(events.intHomeScore == null){
+                    scoreHome.text = "0"
+                } else{
+                    scoreHome.text = events.intHomeScore
+                }
+                if(events.intAwayScore == null){
+                    scoreAway.text = "0"
+                } else{
+                    scoreAway.text = events.intAwayScore
+                }
                 nameAway.text = events.strAwayTeam
-                scoreAway.text = events.intAwayScore
             }
         }
     }

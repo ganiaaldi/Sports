@@ -51,6 +51,7 @@ class HomeFragment : Fragment() {
                     val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
                     mainViewModel.getDetail(league.idLeague)
                     mainViewModel.getPrevEvents(league.idLeague)
+                    mainViewModel.getNextEvents(league.idLeague)
 //                    findNavController().navigate(
 //                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(
 //                            league.idLeague

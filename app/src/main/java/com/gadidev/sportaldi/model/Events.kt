@@ -49,4 +49,36 @@ data class ListEvents (
         @field:SerializedName("strVenue")
         val strVenue: String,
 
+        @field:SerializedName("strHomeYellowCards")
+        val strHomeYellowCards: String,
+
+        @field:SerializedName("strAwayYellowCards")
+        val strAwayYellowCards: String,
+
+        @field:SerializedName("strHomeRedCards")
+        val strHomeRedCards: String,
+
+        @field:SerializedName("strAwayRedCards")
+        val strAwayRedCards: String,
+
+        @field:SerializedName("intHomeShots")
+        val intHomeShots: String,
+
+        @field:SerializedName("intAwayShots")
+        val intAwayShots: String,
+
+        @field:SerializedName("strHomeFormation")
+        val strHomeFormation: String,
+
+        @field:SerializedName("strAwayFormation")
+        val strAwayFormation: String,
+
+        @field:SerializedName("strHomeGoalDetails")
+        val strHomeGoalDetails: String,
+
+        @field:SerializedName("strAwayGoalDetails")
+        val strAwayGoalDetails: String,
+
+        @field:SerializedName("strDescriptionEN")
+        val strDescriptionEN: String,
         )

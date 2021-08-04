@@ -34,9 +34,6 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
-            binding.progressDialog.visibility = if (isLoading) View.VISIBLE else View.GONE
-        })
         setData()
         createPager()
     }
@@ -47,6 +44,9 @@ class DetailFragment : Fragment() {
 //        model.leagueIdShare.observe(viewLifecycleOwner, { data ->
 //            model.getDetail(data!!)
 //            Log.d("cekdata", "${data}")
+        model.isLoading.observe(viewLifecycleOwner, { isLoading ->
+            binding.progressDialog.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
         model.leagueDetail.observe(viewLifecycleOwner, { league ->
             binding.tvTitle.text = league.leagues[0].strLeague
             binding.tvCurrentSeason.text = league.leagues[0].strCurrentSeason

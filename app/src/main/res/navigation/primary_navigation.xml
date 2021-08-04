@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_prevEventFragment"
-            app:destination="@id/prevEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -26,9 +23,6 @@
             android:name="leagueId"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_detailFragment_to_prevEventFragment"
-            app:destination="@id/prevEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/prevEventFragment"
@@ -39,5 +33,22 @@
             android:name="leagueId"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_prevEventFragment_to_detailEventFragment"
+            app:destination="@id/detailEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailEventFragment"
+        android:name="com.gadidev.sportaldi.ui.DetailEventFragment"
+        android:label="fragment_detail_event"
+        tools:layout="@layout/fragment_detail_event" />
+    <fragment
+        android:id="@+id/nextEventFragment"
+        android:name="com.gadidev.sportaldi.ui.NextEventFragment"
+        android:label="fragment_next_event"
+        tools:layout="@layout/fragment_next_event" >
+        <action
+            android:id="@+id/action_nextEventFragment_to_detailEventFragment"
+            app:destination="@id/detailEventFragment" />
     </fragment>
 </navigation>

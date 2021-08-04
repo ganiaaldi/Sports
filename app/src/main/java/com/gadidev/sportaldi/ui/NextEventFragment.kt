@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gadidev.sportaldi.R
 import com.gadidev.sportaldi.adapter.MatchAdapter
@@ -34,7 +35,7 @@ class NextEventFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val model = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         model.nextEvent.observe(viewLifecycleOwner, { events ->
-            Log.d("apakah","${events}")
+            Log.d("apakan","${events}")
             binding.rvNext.setHasFixedSize(true)
             binding.rvNext.layoutManager = LinearLayoutManager(context)
             val adapter = MatchAdapter(events.events)
@@ -46,6 +47,10 @@ class NextEventFragment : Fragment() {
 ////                                    league.idLeague
 //                            )
 //                    )
+                    model.getDetailEvents(events.idEvent)
+                    model.getHomeTeams(events.idHomeTeam)
+                    model.getAwayTeams(events.idAwayTeam)
+                    findNavController().navigate(R.id.detailEventFragment)
                 }
             })
         })

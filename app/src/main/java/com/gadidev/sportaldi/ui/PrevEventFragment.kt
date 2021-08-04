@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gadidev.sportaldi.R
 import com.gadidev.sportaldi.adapter.LeagueAdapter
 import com.gadidev.sportaldi.adapter.MatchAdapter
 import com.gadidev.sportaldi.databinding.FragmentPrevEventBinding
@@ -48,6 +49,10 @@ class PrevEventFragment : Fragment() {
 ////                                    league.idLeague
 //                            )
 //                    )
+                    model.getDetailEvents(events.idEvent)
+                    model.getHomeTeams(events.idHomeTeam)
+                    model.getAwayTeams(events.idAwayTeam)
+                    findNavController().navigate(R.id.detailEventFragment)
                 }
             })
         })
