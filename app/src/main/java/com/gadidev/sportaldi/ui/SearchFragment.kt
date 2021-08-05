@@ -35,18 +35,23 @@ class SearchFragment : Fragment() {
             binding.progressDialog.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
         model.searchMatch.observe(viewLifecycleOwner, { query ->
-            binding.rvSearch.setHasFixedSize(true)
-            binding.rvSearch.layoutManager = LinearLayoutManager(context)
-            val adapter = MatchAdapter(query.event)
-            binding.rvSearch.adapter = adapter
-            adapter.setOnItemClickCallback(object : MatchAdapter.OnItemClickCallback {
-                override fun onItemClicked(events: ListEvents) {
-                    model.getDetailEvents(events.idEvent)
-                    model.getHomeTeams(events.idHomeTeam)
-                    model.getAwayTeams(events.idAwayTeam)
-                    findNavController().navigate(R.id.detailEventFragment)
-                }
-            })
+            if(query.event == null){
+                Toast.makeText(context,"Search keyword not found.",Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
+            }else{
+                binding.rvSearch.setHasFixedSize(true)
+                binding.rvSearch.layoutManager = LinearLayoutManager(context)
+                val adapter = MatchAdapter(query.event)
+                binding.rvSearch.adapter = adapter
+                adapter.setOnItemClickCallback(object : MatchAdapter.OnItemClickCallback {
+                    override fun onItemClicked(events: ListEvents) {
+                        model.getDetailEvents(events.idEvent)
+                        model.getHomeTeams(events.idHomeTeam)
+                        model.getAwayTeams(events.idAwayTeam)
+                        findNavController().navigate(R.id.detailEventFragment)
+                    }
+                })
+            }
         })
     }
 }
