@@ -39,11 +39,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setData() {
-//        val leagueId = DetailFragmentArgs.fromBundle(requireArguments()).leagueId
         val model = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-//        model.leagueIdShare.observe(viewLifecycleOwner, { data ->
-//            model.getDetail(data!!)
-//            Log.d("cekdata", "${data}")
         model.isLoading.observe(viewLifecycleOwner, { isLoading ->
             binding.progressDialog.visibility = if (isLoading) View.VISIBLE else View.GONE
         })

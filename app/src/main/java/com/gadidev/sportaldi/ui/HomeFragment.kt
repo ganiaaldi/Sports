@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,6 +40,18 @@ class HomeFragment : Fragment() {
             binding.progressDialog.visibility = if (isLoading) View.VISIBLE else View.GONE
         })
         setData()
+        binding.searchTeam.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(e: String): Boolean {
+                val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+                mainViewModel.searchEvents(e)
+//                val args = HomeFragmentDirections.actionHomeFragmentToSearchFragment(query)
+                findNavController().navigate(R.id.searchFragment)
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                return true
+            }
+        })
     }
 
     private fun setData() {
@@ -52,19 +67,7 @@ class HomeFragment : Fragment() {
                     mainViewModel.getDetail(league.idLeague)
                     mainViewModel.getPrevEvents(league.idLeague)
                     mainViewModel.getNextEvents(league.idLeague)
-//                    findNavController().navigate(
-//                        HomeFragmentDirections.actionHomeFragmentToDetailFragment(
-//                            league.idLeague
-//                        )
-
-//                    Log.d("datanih","${data}")
                     findNavController().navigate(R.id.detailFragment)
-//                    )
-//                    findNavController().navigate(
-//                            HomeFragmentDirections.actionHomeFragmentToPrevEventFragment(
-//                                    league.idLeague
-//                            )
-//                    )
                 }
             })
         })

@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/colorGrayWhite"
+        android:background="@color/colorPrimaryWhite"
         android:padding="10dp">
 
      <androidx.appcompat.widget.AppCompatTextView
@@ -52,7 +52,7 @@
             android:id="@+id/tvWebsite"
             android:layout_toStartOf="@id/imgLeagueDetail"
             style="@style/DarkTextSmall"
-            android:textColor="@color/colorGray"
+            android:textColor="@color/colorGrayWhite"
             android:textSize="12sp"
             />
 

@@ -10,7 +10,7 @@
     card_view:cardElevation="4dp"
     card_view:cardMaxElevation="6dp"
     card_view:cardUseCompatPadding="true"
-    card_view:cardBackgroundColor="@color/colorGrayWhite">
+    card_view:cardBackgroundColor="@color/colorPrimaryWhite">
 
     <RelativeLayout
         android:layout_width="match_parent"

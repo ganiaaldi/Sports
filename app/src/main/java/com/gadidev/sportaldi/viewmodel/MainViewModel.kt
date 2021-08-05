@@ -1,6 +1,7 @@
 package com.gadidev.sportaldi.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,6 +39,10 @@ class MainViewModel : ViewModel() {
     private val _awayTeams = MutableLiveData<Teams>()
     val homeTeams: LiveData<Teams> = _homeTeams
     val awayTeams: LiveData<Teams> = _awayTeams
+
+    private val _searchMatch = MutableLiveData<Events>()
+    val searchMatch: LiveData<Events> = _searchMatch
+
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -185,6 +190,28 @@ class MainViewModel : ViewModel() {
 
             override fun onFailure(call: Call<Teams>, t: Throwable) {
 //                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+
+    fun searchEvents(e : String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().searchEvents(e)
+        client.enqueue(object : Callback<Events> {
+            override fun onResponse(call: Call<Events>, response: Response<Events>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _searchMatch.postValue(response.body())
+                    Log.e(TAG, "onSucesss: ${call.request().url}")
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Events>, t: Throwable) {
+                _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })

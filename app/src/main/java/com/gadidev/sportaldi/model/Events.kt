@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class Events (
         @field:SerializedName("events")
         val events: List<ListEvents>,
+
+        @field:SerializedName("event")
+        val event: List<ListEvents>,
 )
 
 

@@ -42,11 +42,6 @@ class NextEventFragment : Fragment() {
             binding.rvNext.adapter = adapter
             adapter.setOnItemClickCallback(object : MatchAdapter.OnItemClickCallback {
                 override fun onItemClicked(events: ListEvents) {
-//                    findNavController().navigate(
-////                            HomeFragmentDirections.actionHomeFragmentToDetailFragment(
-////                                    league.idLeague
-//                            )
-//                    )
                     model.getDetailEvents(events.idEvent)
                     model.getHomeTeams(events.idHomeTeam)
                     model.getAwayTeams(events.idAwayTeam)

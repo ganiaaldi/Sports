@@ -38,4 +38,9 @@ interface ApiService {
         fun getTeams(
                 @Query("id") id: String
         ) : Call <Teams>
+
+        @GET("searchevents.php")
+        fun searchEvents(
+                @Query("e") e: String
+        ) : Call <Events>
     }
